@@ -67,6 +67,113 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use("/", require("./routes/index"));
 app.use("/users", require("./routes/users"));
 
+const mongoURI = "mongodb://localhost:27017/fileupload";
+// "mongodb+srv://bradt1234:bradt1234@cluster0.bgtnz.mongodb.net/SEFITA?retryWrites=true&w=majority";
+
+const conn = mongoose.createConnection(mongoURI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
+
+// Init gfs
+let gfs;
+
+conn.once("open", () => {
+  // Init stream
+  gfs = Grid(conn.db, mongoose.mongo);
+  gfs.collection("uploads");
+});
+
+// Create storage engine
+const storage = new GridFsStorage({
+  url: mongoURI,
+  file: (req, file) => {
+    return new Promise((resolve, reject) => {
+      crypto.randomBytes(16, (err, buf) => {
+        if (err) {
+          return reject(err);
+        }
+        const filename = buf.toString("hex") + path.extname(file.originalname);
+        const fileInfo = {
+          filename: filename,
+          bucketName: "uploads",
+        };
+        resolve(fileInfo);
+      });
+    });
+  },
+});
+
+const upload = multer({ storage });
+// @route GET /
+// @desc Loads form
+
+app.get("/dashboar", (req, res) => {
+  gfs.files.find().toArray((err, files) => {
+    // Check if files exist
+    if (!files || files.length === 0) {
+      res.render("dashboard", { files: false });
+    } else {
+      files.map((file) => {
+        if (
+          file.contentType === "image/jpeg" ||
+          file.contentType === "image/png"
+        ) {
+          file.isImage = true;
+        } else {
+          file.isImage = false;
+        }
+      });
+      res.render("dashboard", { files: files });
+    }
+  });
+});
+
+// @route POST /upload
+// @desc Uploads file to DB
+
+app.post("/upload", upload.single("file"), (req, res) => {
+  // res.json({ file: req.file });
+  res.redirect("/dashboar");
+});
+
+// @ route GET /image/:filename
+// @ desc Display single file object
+
+app.get("/image/:filename", (req, res) => {
+  gfs.files.findOne({ filename: req.params.filename }, (err, file) => {
+    // Check if file
+    if (!file || file.length === 0) {
+      return res.status(404).json({
+        err: "No files exists",
+      });
+    }
+    // File exists
+    // Check if image
+    if (file.contentType === "image/jpeg" || file.contentType === "image/png") {
+      // Read output to browser
+      var readstream = gfs.createReadStream(file.filename);
+      // const readStream = gfs.openDownloadStream(file.filename);
+      readstream.pipe(res);
+    } else {
+      res.status(404).json({
+        err: "Not an image",
+      });
+    }
+  });
+});
+
+//@route DELETE /files/:id
+//@desc Delete file
+app.post("/files/:id", (req, res) => {
+  gfs.remove({ _id: req.params.id, root: "uploads" }, (err, gridStore) => {
+    if (err) {
+      return res.status(404).json({ err: err });
+    }
+    res.redirect("/dashboar");
+  });
+});
+
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, console.log(`Server listening on port ${PORT}`));

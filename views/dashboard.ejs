@@ -14,106 +14,151 @@
   </div>
 </nav>
 
-<!-- <h1 class="mt-4">Dashboard</h1>
-<p class="lead mb-3">Welcome <%= name %></p>
-<a href="/users/logout" class="btn btn-secondary">Logout</a> -->
-
-<form action="" method="post" class="mt-5">
+<form action="/users/data" method="post" class="mt-5">
   <div class="form-group col-4">
-    <label for="name">Phone:</label>
-    <input class="form-control" type="text" id="name" />
+    <label for="phone">Phone:</label>
+    <input class="form-control" type="number" id="phone" name="phone" />
   </div>
 
   <div class="form-group col-4">
-    <label for="name">Ref:</label>
-    <input class="form-control" type="text" id="name" />
+    <label for="ref">Ref:</label>
+    <input class="form-control" type="text" id="ref" name="ref" />
   </div>
   <div class="form-group col-4">
-    <label for="name">Style:</label>
-    <input class="form-control" type="text" id="name" />
+    <label for="style">Style:</label>
+    <input class="form-control" type="text" id="style" name="style" />
   </div>
   <div class="form-group col-4">
-    <label for="name">Date of Order Taken:</label>
-    <input class="form-control" type="text" id="name" />
+    <label for="dot">Date of Order Taken:</label>
+    <input class="form-control" type="date" id="dot" name="dot" />
   </div>
   <div class="form-group col-4">
-    <label for="name">Date of Delivery:</label>
-    <input class="form-control" type="text" id="name" />
+    <label for="dd">Date of Delivery:</label>
+    <input class="form-control" type="date" id="dd" name="dd" />
   </div>
   <div class="form-group col-4">
-    <label for="name">Color:</label>
-    <input class="form-control" type="text" id="name" />
+    <label for="color">Color:</label>
+    <input class="form-control" type="text" id="color" name="color" />
   </div>
   <div class="form-group col-4">
-    <label for="name">Content/Fabric:</label>
-    <input class="form-control" type="text" id="name" />
+    <label for="fabric">Content/Fabric:</label>
+    <input class="form-control" type="text" id="fabric" name="fabric" />
   </div>
   <div class="form-group col-4">
-    <label for="name">Down-Payment:</label>
-    <input class="form-control" type="text" id="name" />
+    <label for="dpayment">Down-Payment:</label>
+    <input class="form-control" type="text" id="dpayment" name="dpayment" />
   </div>
   <div class="form-group col-4">
-    <label for="name">Total-Payment:</label>
-    <input class="form-control" type="text" id="name" />
+    <label for="tpayment">Total-Payment:</label>
+    <input class="form-control" type="text" id="tpayment" name="tpayment" />
   </div>
   <div class="form-group col-4">
-    <label for="name">Check:</label>
-    <input class="form-control" type="text" id="name" />
+    <label for="check">Check:</label>
+    <input class="form-control" type="text" id="check" name="check" />
   </div>
   <div class="form-group col-4">
-    <label for="name">Banck Receipt:</label>
-    <input class="form-control" type="text" id="name" />
+    <label for="receipt">Banck Receipt:</label>
+    <input class="form-control" type="text" id="receipt" name="receipt" />
   </div>
 
   <div class="form-group col-4">
-    <label for="name">Shoulder:</label>
-    <input class="form-control" type="text" id="name" />
+    <label for="shoulder">Shoulder:</label>
+    <input class="form-control" type="text" id="shoulder" name="shoulder" />
   </div>
   <div class="form-group col-4">
-    <label for="name">Shoulder to waist:</label>
-    <input class="form-control" type="text" id="name" />
+    <label for="shoulderWaist">Shoulder to waist:</label>
+    <input
+      class="form-control"
+      type="text"
+      id="shoulderWaist"
+      name="shoulderWaist"
+    />
   </div>
   <div class="form-group col-4">
-    <label for="name">Bust 1, 2, 3:</label>
-    <input class="form-control" type="text" id="name" />
+    <label for="bust">Bust 1, 2, 3:</label>
+    <input class="form-control" type="text" id="bust" name="bust" />
   </div>
   <div class="form-group col-4">
-    <label for="name">Waist:</label>
-    <input class="form-control" type="text" id="name" />
+    <label for="waist">Waist:</label>
+    <input class="form-control" type="text" id="waist" name="waist" />
   </div>
   <div class="form-group col-4">
-    <label for="name">Waist to hip:</label>
-    <input class="form-control" type="text" id="name" />
+    <label for="waistHip">Waist to hip:</label>
+    <input class="form-control" type="text" id="waistHip" name="waistHip" />
   </div>
   <div class="form-group col-4">
-    <label for="name">Waist to length:</label>
-    <input class="form-control" type="text" id="name" />
+    <label for="waistLength">Waist to length:</label>
+    <input
+      class="form-control"
+      type="text"
+      id="waistLength"
+      name="waistLength"
+    />
   </div>
   <div class="form-group col-4">
-    <label for="name">Neck/Opening:</label>
-    <input class="form-control" type="text" id="name" />
+    <label for="neckOpening">Neck/Opening:</label><br />
+    <select name="neckOpening" id="neckOpening">
+      <option value="U">U</option>
+      <option value="O">O</option>
+      <option value="V">V</option>
+      <option value="offshoulder">offshoulder</option>
+    </select>
   </div>
   <div class="form-group col-4">
-    <label for="name">Sleeve length:</label>
-    <input class="form-control" type="text" id="name" />
+    <label for="sleeve">Sleeve length:</label>
+    <input class="form-control" type="text" id="sleeve" name="sleeve" />
   </div>
   <div class="form-group col-4">
-    <label for="name">Cuff:</label>
-    <input class="form-control" type="text" id="name" />
+    <label for="cuff">Cuff:</label>
+    <input class="form-control" type="text" id="cuff" name="cuff" />
   </div>
   <div class="form-group col-4">
-    <label for="name">Hip:</label>
-    <input class="form-control" type="text" id="name" />
+    <label for="hip">Hip:</label>
+    <input class="form-control" type="text" id="hip" name="hip" />
   </div>
 
   <div class="col-4">
-    <label for="exampleFormControlTextarea1" class="form-label">N.B</label>
+    <label for="textarea" class="form-label">N.B</label>
     <textarea
       class="form-control"
-      id="exampleFormControlTextarea1"
+      id="textarea"
       rows="3"
+      name="textarea"
     ></textarea>
   </div>
-
   <button type="submit" class="btn btn-primary mt-3">Submit</button>
 </form>
+
+<div class="row">
+  <div class="col-md-6 m-auto">
+    <h1 class="text-center display-4 my-4">Mongo file upload</h1>
+    <form action="/upload" method="POST" enctype="multipart/form-data">
+      <div class="custom-file mb-3">
+        <label for="file" class="custom-file-label">Choose File</label>
+        <input type="file" name="file" id="file" class="custom-file-input" />
+      </div>
+      <input type="submit" value="submit" class="btn btn-primary btn-block" />
+    </form>
+    <hr />
+    <% if(files){%> <% files.forEach(function(file){%>
+    <div class="mb-3" style="display: inline !important">
+      <% if(file.isImage){ %>
+      <img
+        src="image/<%=file.filename%>"
+        alt=""
+        style="width: 100px; height: 100px"
+      />
+      <% }else{%> <%=file.filename%> <%}%>
+      <form
+        style="display: inline !important"
+        method="POST"
+        action="/files/<%= file._id%>?_method=DELETE"
+      >
+        <button class="btn btn-danger">Delete</button>
+      </form>
+    </div>
+    <%})%> <%} else { %>
+    <p>No files to show</p>
+    <%}%>
+  </div>
+</div>
