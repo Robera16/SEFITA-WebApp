@@ -9,34 +9,6 @@ router.get("/login", (req, res) => res.render("login"));
 // Register page
 router.get("/register", (req, res) => res.render("register"));
 
-router.post("/data", (req, res) => {
-  const {
-    phone,
-    ref,
-    style,
-    dot,
-    dd,
-    color,
-    fabric,
-    dpayment,
-    tpayment,
-    check,
-    receipt,
-    shoulder,
-    shoulderWaist,
-    bust,
-    waist,
-    waistHip,
-    waistLength,
-    neckOpening,
-    sleeve,
-    cuff,
-    hip,
-    textarea,
-  } = req.body;
-
-  res.redirect("/dashboar");
-});
 // Register Handle
 router.post("/register", (req, res) => {
   //   console.log(req.body);

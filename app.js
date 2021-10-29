@@ -14,7 +14,7 @@ const session = require("express-session");
 const passport = require("passport");
 
 const app = express();
-
+global.check = true;
 // Passport config
 require("./config/passport")(passport);
 
@@ -66,6 +66,7 @@ app.use(express.static(path.join(__dirname, "public")));
 
 app.use("/", require("./routes/index"));
 app.use("/users", require("./routes/users"));
+app.use("/form", require("./routes/form"));
 
 const mongoURI = "mongodb://localhost:27017/fileupload";
 // "mongodb+srv://bradt1234:bradt1234@cluster0.bgtnz.mongodb.net/SEFITA?retryWrites=true&w=majority";
@@ -112,8 +113,10 @@ app.get("/dashboar", (req, res) => {
   gfs.files.find().toArray((err, files) => {
     // Check if files exist
     if (!files || files.length === 0) {
+      global.check = true;
       res.render("dashboard", { files: false });
     } else {
+      global.check = true;
       files.map((file) => {
         if (
           file.contentType === "image/jpeg" ||

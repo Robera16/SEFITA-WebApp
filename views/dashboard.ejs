@@ -14,7 +14,8 @@
   </div>
 </nav>
 
-<form action="/users/data" method="post" class="mt-5">
+<form action="/form/data" method="post" class="mt-5">
+  <%- include ('partials/messages'); %>
   <div class="form-group col-4">
     <label for="phone">Phone:</label>
     <input class="form-control" type="number" id="phone" name="phone" />
@@ -140,13 +141,15 @@
       <input type="submit" value="submit" class="btn btn-primary btn-block" />
     </form>
     <hr />
-    <% if(files){%> <% files.forEach(function(file){%>
+    <% if(global.check===true){ %> <% if(files){%> <%
+    files.forEach(function(file){%>
     <div class="mb-3" style="display: inline !important">
       <% if(file.isImage){ %>
       <img
         src="image/<%=file.filename%>"
         alt=""
         style="width: 100px; height: 100px"
+        ;
       />
       <% }else{%> <%=file.filename%> <%}%>
       <form
@@ -159,6 +162,6 @@
     </div>
     <%})%> <%} else { %>
     <p>No files to show</p>
-    <%}%>
+    <%}%> <%}%>
   </div>
 </div>
